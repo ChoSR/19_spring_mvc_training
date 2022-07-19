@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
 	
-<mapper namespace="사용하고 싶은 이름">
+	<insert id="insertBoard" parameterType="com.spring.training.board.dto.BoardDto">
+		INSERT INTO T_SPRING_BOARD(
+				WRITER,
+				EMAIL,
+				SUBJECT,
+				PASSWORD,
+				REG_DATE,
+				READ_COUNT,
+				CONTENT
+		)
+		VALUES(
+				#{writer},
+				#{email},
+				#{subject},
+				#{password},
+				NOW(),
+				0,
+				#{content}
+		)
+	</insert>
+	
+	<select id="selectListBoard" resultType="com.spring.training.board.dto.BoardDto">
+		SELECT
+				*
+		FROM
+				T_SPRING_BOARD
+	</select>
+	
+	<select id="selectOneBoard" parameterType="int" resultType="com.spring.training.board.dto.BoardDto">
+		SELECT
+				*
+		FROM
+				T_SPRING_BOARD
+		WHERE
+				NUM = #{num}
+	</select>
+	
+	<update id="updateReadCount" parameterType="int">
+		UPDATE
+				T_SPRING_BOARD
+		SET
+				READ_COUNT = READ_COUNT + 1
+		WHERE	
+				NUM = #{num}
+	</update> 
 </mapper>
