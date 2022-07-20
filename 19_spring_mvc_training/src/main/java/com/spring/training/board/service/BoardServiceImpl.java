@@ -30,6 +30,19 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.updateReadCount(num);
 		return boardDao.selectOneBoard(num);
 	}
+
+	@Override
+	public boolean modifyBoard(BoardDto boardDto) {
+
+		boolean isUpdate = false;
+		
+		if(boardDao.validateUserCheck(boardDto) != null) {
+			boardDao.updateBoard(boardDto);
+			isUpdate = true;
+		}
+		
+		return isUpdate;
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +49,9 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="수정하기" onclick="">
-					<input type="button" value="삭제하기" onclick="">
-					<input type="button" value="목록보기" onclick="">
+					<input type="button" value="수정하기" onclick="location.href='${contextPath}/board/boardUpdate?num=${boardDto.num}'">
+					<input type="button" value="삭제하기" onclick="location.href='${contextPath}/board/boardDelete?num=${boardDto.num}'">
+					<input type="button" value="목록보기" onclick="location.href='${contextPath}/board/boardList'">
 				</td>
 			</tr>
 		</table>

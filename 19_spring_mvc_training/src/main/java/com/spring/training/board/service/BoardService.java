@@ -9,5 +9,6 @@ public interface BoardService {
 	public void boardWrite(BoardDto boardDto);
 	public List<BoardDto> boardList();
 	public BoardDto boardInfo(int num);
+	public boolean modifyBoard(BoardDto boardDto);
 	
 }
