@@ -66,4 +66,12 @@
 		WHERE
 				NUM = #{num}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM
+				T_SPRING_BOARD
+		WHERE
+				NUM = #{num}
+	</delete>
+	
 </mapper>

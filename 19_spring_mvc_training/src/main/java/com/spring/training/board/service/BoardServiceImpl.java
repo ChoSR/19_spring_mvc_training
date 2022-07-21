@@ -15,24 +15,24 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao boardDao;
 	
 	@Override
-	public void boardWrite(BoardDto boardDto) {
+	public void boardWrite(BoardDto boardDto) throws Exception{
 		// dao로 전달
-		boardDao.insertBoard(boardDto);
+			boardDao.insertBoard(boardDto);
 	}
 
 	@Override
-	public List<BoardDto> boardList() {
+	public List<BoardDto> boardList() throws Exception{
 		return boardDao.selectListBoard();
 	}
 
 	@Override
-	public BoardDto boardInfo(int num) {
+	public BoardDto boardInfo(int num) throws Exception{
 		boardDao.updateReadCount(num);
 		return boardDao.selectOneBoard(num);
 	}
 
 	@Override
-	public boolean modifyBoard(BoardDto boardDto) {
+	public boolean modifyBoard(BoardDto boardDto) throws Exception{
 
 		boolean isUpdate = false;
 		
@@ -42,6 +42,19 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		return isUpdate;
+	}
+
+	@Override
+	public boolean removeBoard(BoardDto boardDto) throws Exception{
+		
+		boolean isDelete = false;
+		
+		if(boardDao.validateUserCheck(boardDto) != null) {
+			boardDao.deleteBoard(boardDto.getNum());
+			isDelete = true;
+		}
+		
+		return isDelete;
 	}
 	
 	

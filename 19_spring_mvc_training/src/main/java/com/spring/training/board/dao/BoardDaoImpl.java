@@ -15,34 +15,39 @@ public class BoardDaoImpl implements BoardDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insertBoard(BoardDto boardDto) {
+	public void insertBoard(BoardDto boardDto) throws Exception {
 		sqlSession.insert("insertBoard", boardDto);
 	}
 
 	@Override
-	public List<BoardDto> selectListBoard() {
+	public List<BoardDto> selectListBoard() throws Exception{
 		return sqlSession.selectList("board.selectListBoard");
 	}
 
 	@Override
-	public BoardDto selectOneBoard(int num) {
+	public BoardDto selectOneBoard(int num) throws Exception{
 		return sqlSession.selectOne("board.selectOneBoard", num);
 	}
 
 	@Override
-	public void updateReadCount(int num) {
+	public void updateReadCount(int num) throws Exception{
 		sqlSession.update("board.updateReadCount", num);
 	}
 
 	@Override
-	public BoardDto validateUserCheck(BoardDto boardDto) {
+	public BoardDto validateUserCheck(BoardDto boardDto) throws Exception{
 		
 		return sqlSession.selectOne("board.validateUserCheck", boardDto);
 	}
 
 	@Override
-	public void updateBoard(BoardDto boardDto) {
+	public void updateBoard(BoardDto boardDto) throws Exception{
 		sqlSession.update("board.updateBoard", boardDto);
+	}
+
+	@Override
+	public void deleteBoard(int num) throws Exception{
+		sqlSession.delete("board.deleteBoard", num);
 	}
 	
 		
