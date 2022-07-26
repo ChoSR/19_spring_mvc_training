@@ -11,7 +11,7 @@ public class MemberDto {
 	private String passwd;
 	private String memberNm;
 	private String sex;
-	private Date birthDt;
+	private String birthDt;
 	private String hp;
 	private String smsstsYn;
 	private String email;
@@ -47,10 +47,10 @@ public class MemberDto {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Date getBirthDt() {
+	public String getBirthDt() {
 		return birthDt;
 	}
-	public void setBirthDt(Date birthDt) {
+	public void setBirthDt(String birthDt) {
 		this.birthDt = birthDt;
 	}
 	public String getHp() {
@@ -122,5 +122,7 @@ public class MemberDto {
 				+ ", jibunAddress=" + jibunAddress + ", namujiAddress=" + namujiAddress + ", joinDt=" + joinDt
 				+ ", etc=" + etc + "]";
 	}
+	
+	
 	
 }

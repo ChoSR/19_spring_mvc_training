@@ -10,7 +10,7 @@
 <body>
 	<h1>회원탈퇴</h1>
 	<br>
-	<form action="${contextPath}/member/delete" method="post" >
+	<form action="${contextPath}/member/removeMember" method="post" >
 		<table border="1">
 			<tr>
 				<td>아이디</td>

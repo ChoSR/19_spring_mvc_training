@@ -32,14 +32,14 @@
 					<c:forEach var="memberDto" items="${memberList}">
 						<tr>
 							<td>${memberDto.memberId}</td>
-							<td>${memberDto.memberName}</td>
-							<td>${memberDto.hp1}-${memberDto.hp2}-${memberDto.hp3}</td>
+							<td>${memberDto.memberNm}</td>
+							<td>${memberDto.hp}</td>
 							<td>
 								${memberDto.roadAddress}<br> 
 								${memberDto.jibunAddress}<br>
 								${memberDto.namujiAddress}<br>
 							</td>
-							<td><fmt:formatDate value="${memberDto.joinDate}" pattern="yyyy-MM-dd" /></td>
+							<td><fmt:formatDate value="${memberDto.joinDt}" pattern="yyyy-MM-dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

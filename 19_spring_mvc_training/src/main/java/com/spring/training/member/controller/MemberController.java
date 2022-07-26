@@ -35,7 +35,7 @@ import com.spring.training.member.service.MemberService;
 
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
@@ -149,7 +149,7 @@ public class MemberController {
 		} 
 		else {
 			jsScript = "<script>";
-			jsScript += "alert('fail update!');";
+			jsScript += "alert('check your password!');";
 			jsScript += "history.back(-1);";
 			jsScript += "</script>";
 		}

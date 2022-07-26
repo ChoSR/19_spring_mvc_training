@@ -17,16 +17,11 @@
 				T_SPRING_MEMBER 
 		VALUES (
 				#{memberId},
-				#{memberPw},
-				#{memberName},
-				#{memberGender},
-				#{memberBirthY},
-				#{memberBirthM},
-				#{memberBirthD},
-				#{memberBirthGn},
-				#{hp1},
-				#{hp2},
-				#{hp3},
+				#{passwd},
+				#{memberNm},
+				#{sex},
+				#{birthDt},
+				#{hp},
 				#{smsstsYn},
 				#{email},
 				#{emailstsYn},
@@ -75,7 +70,7 @@
 				SEX = #{sex}, 
 			</if>
 			<if test='birthDt != null and !birthDt.equals("")'>
-				BIRTH_DT = #{birthDth}, 
+				BIRTH_DT = #{birthDt}, 
 			</if>
 			<if test='hp != null and !hp.equals("")'>
 				HP = #{hp},  

@@ -13,17 +13,14 @@
 	$().ready(function() {
 		
 		var hp = "${memberDto.hp}".split("-");
-		
 		$("#hp1").val(hp[0]);
 		$("#hp2").val(hp[1]);
 		$("#hp3").val(hp[2]);
 		
 		var birthDt = "${memberDto.birthDt}".split("-");
-		
 		$("#birthY").val(birthDt[0]);
 		$("#birthM").val(birthDt[1]);
 		$("#birthD").val(birthDt[2]);
-		
 		
 		$("form").submit(function(){
 			
@@ -31,19 +28,19 @@
 			$("[name='hp']").val($("#hp1").val() +"-" + $("#hp2").val() +"-" + $("#hp3").val());
 			$("[name='birthDt']").val($("#birthY").val() +"-" + $("#birthM").val() +"-" + $("#birthD").val());
 			
-			if ($("[name='smsstsYn']").val() != "Y") {
-				$("[name='smsstsYn']").val("N")
+			if (!$("[name='smsstsYn']").prop("checked"))  {
+				$("[name='smsstsYn']").val("N");
+				$("[name='smsstsYn']").prop("checked", true);
 			}
-			if ($("[name='emailstsYn']").val() != "Y") {
-				$("[name='emailstsYn']").val("N")
+			if (!$("[name='emailstsYn']").prop("checked")) {
+				$("[name='emailstsYn']").val("N");
+				$("[name='emailstsYn']").prop("checked", true);
 			}
 			
 		});
 		
 		
 	});
-	
-	
 	
 </script>
 <script>
@@ -99,7 +96,7 @@
 		    </tr>
 	        <tr>
 		        <td>비밀번호</td>
-		        <td><input type="password" name="passwd" ${memberDto.passwd }/></td>
+		        <td><input type="password" name="passwd" /></td>
 	        </tr>
 	        <tr>
 		        <td>이름</td>
@@ -108,16 +105,8 @@
 		    <tr>
 		        <td>성별</td>
 		        <td>
-		        	<c:choose>
-		        		<c:when test="${memberDto.sex eq 'man'}">
-				        	<input type="radio" name="sex" value="man" checked /> 남성&emsp;&emsp;&emsp;
-							<input type="radio" name="sex" value="women" />여성
-						</c:when>
-						<c:otherwise>
-							<input type="radio" name="sex" value="man" /> 남성&emsp;&emsp;&emsp;
-							<input type="radio" name="sex" value="women" checked />여성
-						</c:otherwise> 
-		        	</c:choose>
+		        	<input type="radio" name="sex" value="man" <c:if test="${memberDto.sex eq 'man'}">checked </c:if> /> 남성&emsp;&emsp;&emsp;
+					<input type="radio" name="sex" value="women" <c:if test="${memberDto.sex eq 'women'}">checked </c:if> />여성
 		        </td>
 	        </tr>                              
 	        <tr>
@@ -130,12 +119,26 @@
 					</select> 년 
 					<select id="birthM">
 					  	<c:forEach var="month" begin="1" end="12">
-						   <option value="${month}">${month }</option>
+						   <c:choose>
+								<c:when test="${month < 10 }">
+									<option value="0${month}">0${month}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${month}">${month}</option>
+								</c:otherwise>
+							</c:choose>
 					  	</c:forEach>
 					</select> 월  
 					<select id="birthD">
 						<c:forEach var="day" begin="1" end="31">
-							<option value="${day}">${day}</option>
+							<c:choose>
+								<c:when test="${day < 10 }">
+									<option value="0${day}">0${day}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${day}">${day}</option>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</select> 일 &emsp;
 					<input type="hidden" name="birthDt" value="${memberDto.birthDt }">

@@ -18,11 +18,11 @@
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input name="memberPw" type="password" placeholder="비밀번호를 입력하세요." /></td>
+				<td><input type="password" name="passwd" placeholder="비밀번호를 입력하세요." /></td>
 			</tr>
 		</table>
 		<p>
-			<input type="button" value="회원가입" onClick="location.href='${contextPath}/member/join'">
+			<input type="button" value="회원가입" onClick="location.href='${contextPath}/member/register'">
 			<input type="submit" value="로그인">
 		</p>
 	</form>

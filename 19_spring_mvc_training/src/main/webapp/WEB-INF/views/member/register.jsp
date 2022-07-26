@@ -27,7 +27,7 @@
 		       url : "${contextPath}/member/overlappedId",
 		       data : {"memberId" : memberId},
 		       success : function(isOverLapped){
-		          if (isOverLapped == "Y"){
+		          if (isOverLapped == "N"){
 		          	alert("사용할 수 있는 ID입니다.");
 		          	validateMemberId = true;
 		          }
@@ -47,17 +47,18 @@
 			}
 			
 			$("[name='hp']").val($("#hp1").val() +"-" + $("#hp2").val() +"-" + $("#hp3").val());
-			$("[name='birthDt']").val($("#birthY").val() +"-" + $("#birthM").val() +"-" + $("#birthD").val());
+			$("[name='birthDt']").val($("#birthY").val() + "-" + $("#birthM").val() + "-" + $("#birthD").val());
 			
-			if ($("[name='smsstsYn']").val() != "Y") {
-				$("[name='smsstsYn']").val("N")
+			if (!$("[name='smsstsYn']").prop("checked"))  {
+				$("[name='smsstsYn']").val("N");
+				$("[name='smsstsYn']").prop("checked", true);
 			}
-			if ($("[name='emailstsYn']").val() != "Y") {
-				$("[name='emailstsYn']").val("N")
+			if (!$("[name='emailstsYn']").prop("checked")) {
+				$("[name='emailstsYn']").val("N");
+				$("[name='emailstsYn']").prop("checked", true);
 			}
-			
-		});
 		
+		});
 		
 	});
 	
@@ -105,7 +106,7 @@
 
 </head>
 <body>
-	<form action="${contextPath}/member/join" method="post" onsubmit="return checkValidationField()">
+	<form action="${contextPath}/member/register" method="post" onsubmit="return checkValidationField()">
 		<h3>회원가입</h3>
 		<table border="1">
 			<tr>
@@ -117,7 +118,7 @@
 		    </tr>
 	        <tr>
 		        <td>비밀번호</td>
-		        <td><input type="password" name="memberPw" placeholder="비밀번호를 입력하세요." /></td>
+		        <td><input type="password" name="passwd" placeholder="비밀번호를 입력하세요." /></td>
 	        </tr>
 	        <tr>
 		        <td>이름</td>
@@ -140,12 +141,26 @@
 					</select> 년 
 					<select id="birthM">
 					  	<c:forEach var="month" begin="1" end="12">
-						   <option value="${month}">${month }</option>
+						   <c:choose>
+								<c:when test="${month < 10 }">
+									<option value="0${month}">0${month}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${month}">${month}</option>
+								</c:otherwise>
+							</c:choose>
 					  	</c:forEach>
 					</select> 월  
 					<select id="birthD">
 						<c:forEach var="day" begin="1" end="31">
-							<option value="${day}" selected>${day}</option>
+							<c:choose>
+								<c:when test="${day < 10 }">
+									<option value="0${day}">0${day}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${day}">${day}</option>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</select> 일 &emsp;
 					<input type="hidden" name="birthDt">
@@ -162,7 +177,7 @@
 					</select> - 
 					<input size="10px" type="text" id="hp2"> - 
 					<input size="10px" type="text" id="hp3">
-					<input type="checkbox"  id="smsstsYn"  name="smsstsYn"  value="Y" checked/>
+					<input type="checkbox" id="smsstsYn" name="smsstsYn"  value="Y" checked/>
 					<input type="hidden" name="hp">
 	                스프링에서 발송하는 SMS 소식을 수신합니다.
 		        </td>
