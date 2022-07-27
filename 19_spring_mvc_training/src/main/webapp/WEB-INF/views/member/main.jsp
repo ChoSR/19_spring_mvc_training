@@ -19,7 +19,7 @@
 		1) ckeditor				 : register.jsp , webapp/resources/ckeditor
  		2) daumpostofficecode	 : register.jsp , myPage.jsp
 		3) excel export          : pom.xml , memberList.jsp MemberController.java
-		4) BCryptPasswordEncoder : pom.xml , root-context.xml , MemberServiceImpl.java
+		4) BCryptPasswordEncoder : pom.xml , servlet-context.xml , MemberServiceImpl.java
 	
 	 -->
 
