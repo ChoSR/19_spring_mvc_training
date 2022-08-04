@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center" style="padding-top: 100px">
-		<form action="${contextPath }/board/boardDelete" method="post">
+		<form action="${contextPath }/board/bo     ardDelete" method="post">
 			<div align="center">
 				<h1>게시글 삭제</h1>
 				<br>
